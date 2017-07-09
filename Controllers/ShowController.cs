@@ -31,10 +31,7 @@ namespace GuestBookApp.Controllers
         }
         public IActionResult Search(string text, bool key = false)  //поиск постов
         {
-            //if (text == null)
-            //{
-            //    return View();
-            //}
+
             return View(dal.Search(text,key));
         }
     }
