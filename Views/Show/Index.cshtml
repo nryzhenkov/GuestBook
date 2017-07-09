@@ -1,0 +1,49 @@
+﻿@using GuestBookApp.Models
+@model IndexViewModel
+@{
+    ViewData["Title"] = "Просмотреть посты";
+}
+
+<h1>Список тем</h1>
+<hr />
+<div>
+    @foreach (var article in Model.Articles)
+       {
+        <div class="container">
+            <p><b>Дата создания:</b> @article.Date.UtcDateTime.ToString("dd.MM.yyyy HH:mm:ss")</p>
+            <p><b>Тема:</b> @article.Theme</p>
+            <p class="p_text"><b>Текст:</b><br />@article.Text</p>
+        </div>
+        <hr />
+       }
+
+
+     </div>
+    @if (Model.PageViewModel.HasPreviousPage)
+    {
+        <a asp-action="Index"
+           asp-route-page="@(Model.PageViewModel.PageNumber - 1)">
+            Назад
+        </a>
+
+    }
+
+    @if (Model.PageViewModel.HasNextPage)
+    {
+        <a asp-action="Index"
+           asp-route-page="@(Model.PageViewModel.PageNumber + 1)"
+           >
+            Вперед
+        </a>
+
+    }
+    <hr />
+    <div class="form1">
+
+        <form method="post" action="~/Show/Search">
+            <label><input type="checkbox" name="key" value="true" /> Поиск по теме</label>
+            <textarea name="text" required></textarea><br />
+            <input type="submit" value="найти" />
+        </form>
+    </div>
+ 
