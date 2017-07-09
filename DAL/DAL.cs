@@ -45,23 +45,6 @@ namespace GuestBookApp.DAL
             else
                 source = db.Articles.Where(a => Etalon.IsMatch(a.Text));
             save = source.ToList();
-            /*foreach(var Art in db.Articles)
-            {
-            if (string.Compare(key, "true") == 0)  //поиск по теме
-            {
-                  if (Etalon.IsMatch(Art.Theme))
-                  {
-                    save.Add(Art);
-                 }
-            }
-            else                                    //поиск по теме
-            {
-                if (Etalon.IsMatch(Art.Text))
-                    { 
-                   save.Add(Art);
-                }
-             }s
-            }*/
             return save;
         }
     }
